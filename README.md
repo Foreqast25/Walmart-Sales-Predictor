@@ -2,6 +2,9 @@
 
 A full-stack data science and web application that predicts sales for Walmart based on historical patterns, holidays, weather, and economic signals. Built with machine learning, Flask, and a user-friendly interface — this project reduces excess stock and promotes eco-smart retail planning.
 
+▶️ [Click here to watch the demo](https://youtu.be/4HZfc8Bzi2Q?si=A-ULOgTdAksbEXau)
+
+
 ---
 
 ## 🚀 Project Overview
