@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>EcoSmart Stock Management | Walmart</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #eef5ff;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #001F3F;
+      color: white;
+      padding: 12px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    h2 {
+      color: #005CB9;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .coming-note {
+      text-align: center;
+      color: #555;
+      font-style: italic;
+      margin-bottom: 25px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 20px;
+      display: block;
+    }
+
+    input, select {
+      padding: 10px;
+      width: 100%;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 12px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .recommendation {
+      margin-top: 30px;
+      background: #f4fdf6;
+      border-left: 6px solid #28a745;
+      padding: 15px;
+      border-radius: 8px;
+      color: #155724;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h3>Walmart EcoSmart</h3>
+  <nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+  </nav>
+</header>
+
+<main>
+  <h2>♻️ EcoSmart Stock Management <span style="font-size:14px; color:#888; font-style:italic;">(Beta)</span></h2>
+  <p class="coming-note">
+    🚧 This sustainable inventory module is part of our future roadmap — we plan to enhance it with rerouting logistics, eco-discount automation, and warehouse-level optimization.
+  </p>
+
+  <form id="eco-form">
+    <label for="store">Store</label>
+    <input type="text" id="store" name="store" placeholder="Enter store name" required />
+
+    <label for="item">Item</label>
+    <input type="text" id="item" name="item" placeholder="Enter item name" required />
+
+    <label for="stock">Current Stock Level</label>
+    <input type="number" id="stock" name="stock" placeholder="e.g. 300 units" required />
+
+    <button type="submit">Get Smart Suggestion</button>
+  </form>
+
+  <div class="recommendation" id="eco-result" style="display:none;"></div>
+</main>
+
+<script>
+  document.getElementById("eco-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const store = document.getElementById("store").value;
+    const item = document.getElementById("item").value;
+    const stock = parseInt(document.getElementById("stock").value);
+
+    let suggestion = "";
+
+    if (stock > 500) {
+      suggestion = `⚠️ High stock detected! Suggest rerouting some units of <b>${item}</b> from <b>${store}</b> to nearby stores OR offer eco-discounts to clear stock sustainably.`;
+    } else if (stock < 100) {
+      suggestion = `✅ Stock is optimal. No immediate action required.`;
+    } else {
+      suggestion = `🧠 Consider monitoring this stock weekly. You may add light discount offers for <b>${item}</b> in <b>${store}</b>.`;
+    }
+
+    const result = document.getElementById("eco-result");
+    result.innerHTML = suggestion;
+    result.style.display = "block";
+  });
+</script>
+
+</body>
+</html>

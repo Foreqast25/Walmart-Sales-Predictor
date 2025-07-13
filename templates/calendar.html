@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sales Forecast Calendar | Walmart</title>
+
+  <!-- FullCalendar CSS + JS -->
+  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #eef5ff;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background: #001F3F;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    nav a {
+      color: white;
+      margin-left: 25px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .welcome-text {
+      font-weight: 500;
+      margin-right: 15px;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .form-section {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .form-section h3 {
+      margin-top: 0;
+      color: #005CB9;
+    }
+
+    .grid-three {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      align-items: center;
+    }
+
+    input, select, button {
+      font-family: 'Segoe UI', sans-serif;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .calendar-section {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .calendar-header {
+      font-size: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #005CB9;
+    }
+
+    #calendar {
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .grid-three {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    .fc-event-title {
+    white-space: pre-line !important;
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h2>Walmart Sales Dashboard</h2>
+  <nav>
+    <span class="welcome-text">Welcome, {{ user_name }}</span>
+    <a href="/">Home</a>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/eco_stock">EcoSmart Stock</a>
+    <a href="/logout">Logout</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- 🔎 Filter Calendar -->
+  <div class="form-section">
+    <h3>🔍 Filter Calendar View</h3>
+    <div class="grid-three">
+      <input list="store-list" id="calendar-store" placeholder="Select Store" />
+      <input list="item-list" id="calendar-item" placeholder="Select Item" />
+      <button onclick="reloadCalendar()">🔁 Refresh Calendar</button>
+    </div>
+  </div>
+
+  <!-- Store options -->
+  <datalist id="store-list">
+    <option value="Hyderabad">
+    <option value="Jammu">
+    <option value="Bhopal 1">
+    <option value="Bhopal 2">
+  </datalist>
+
+  <!-- Item options -->
+  <datalist id="item-list">
+    <option value="Rice">
+    <option value="Cold Beverages">
+    <option value="Dry Fruits">
+    <option value="Mosquito Repellents">
+  </datalist>
+
+  <!-- 📅 Calendar Section -->
+  <div class="calendar-section">
+    <div class="calendar-header">📅 Forecast Calendar View</div>
+    <div id="calendar"></div>
+  </div>
+
+</main>
+
+<!-- 📅 FullCalendar Logic -->
+<script>
+  let calendar;
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const calendarEl = document.getElementById('calendar');
+
+    calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      height: 'auto',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,listWeek'
+      },
+      events: fetchCalendarEvents,
+      eventColor: '#007bff',
+      eventTextColor: 'white'
+    });
+
+    calendar.render();
+  });
+
+  function fetchCalendarEvents(fetchInfo, successCallback, failureCallback) {
+    const store = document.getElementById("calendar-store").value;
+    const item = document.getElementById("calendar-item").value;
+
+    if (!store || !item) {
+      successCallback([]);
+      return;
+    }
+
+    fetch(`/get_calendar_events?store=${encodeURIComponent(store)}&item=${encodeURIComponent(item)}`)
+      .then(response => {
+        if (!response.ok) throw new Error("Server Error");
+        return response.json();
+      })
+      .then(data => {
+        successCallback(data);
+      })
+      .catch(err => {
+        console.error("Failed to fetch events:", err);
+        failureCallback(err);
+      });
+  }
+
+  function reloadCalendar() {
+    calendar.refetchEvents();
+  }
+</script>
+
+<!-- 🤖 Dummy Chatbot Assistant -->
+{{ chatbot_html | safe }}
+
+</body>
+</html>
