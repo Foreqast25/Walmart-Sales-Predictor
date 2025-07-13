@@ -55,4 +55,45 @@ Walmart stores often struggle with demand volatility due to seasonal shifts, hol
 ---
 
 ## 📁 Project Structure
+walmart-sales-predictor/
+├── backend/
+│ ├── app.py
+│ ├── model/
+│ ├── templates/
+│ └── static/
+├── data/
+├── notebooks/
+│ └── eda_and_model_training.ipynb
+├── README.md
+└── requirements.txt
+
+
+---
+
+## 🧪 How to Run Locally
+
+1. Clone the repo
+```bash
+git clone https://github.com/Foreqast25/Walmart-Sales-Predictor.git
+cd Walmart-Sales-Predictor
+
+2.Create and Activate Virtual Environment
+Windows: 
+python -m venv venv
+venv\Scripts\activate
+
+Mac/Linux:
+python3 -m venv venv
+source venv/bin/activate
+
+3.Install Required Dependencies
+pip install -r backend/requirements.txt
+
+4.Run the Flask App
+cd backend
+python app.py
+
+5.Open the App in Your Browser
+http://localhost:5000
+
 
