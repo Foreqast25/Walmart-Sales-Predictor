@@ -1,4 +1,4 @@
-# 🛒 Walmart Sales Predictor
+#  Walmart Sales Predictor
 
 A full-stack data science and web application that predicts sales for Walmart based on historical patterns, holidays, weather, and economic signals. Built with machine learning, Flask, and a user-friendly interface — this project reduces excess stock and promotes eco-smart retail planning.
 
@@ -7,7 +7,7 @@ A full-stack data science and web application that predicts sales for Walmart ba
 
 ---
 
-## 🚀 Project Overview
+##  Project Overview
 
 Walmart stores often struggle with demand volatility due to seasonal shifts, holidays, and unpredictable trends. Our system analyzes key features like holiday indicators, pricing, and weather to forecast product-level sales, helping:
 - Prevent **understocking** and lost revenue
@@ -16,7 +16,7 @@ Walmart stores often struggle with demand volatility due to seasonal shifts, hol
 
 ---
 
-## 📊 Tech Stack
+##  Tech Stack
 
 | Category         | Tools Used                                     |
 |------------------|------------------------------------------------|
@@ -31,7 +31,7 @@ Walmart stores often struggle with demand volatility due to seasonal shifts, hol
 
 ---
 
-## 🧠 Machine Learning Pipeline
+##  Machine Learning Pipeline
 
 - ✅ Data cleaning & preprocessing
 - ✅ Feature engineering (holidays, weather, discounts)
@@ -42,19 +42,19 @@ Walmart stores often struggle with demand volatility due to seasonal shifts, hol
 
 ---
 
-## 🖥️ App Features
+##  App Features
 
-- 🧮 **Live sales predictions**
-- 📈 Actual vs Predicted graphs
-- 📅 Calendar View
-- 🔍 Eco-smart stock suggestions
-- 🔐 Login & signup functionality
-- 💬 Chatbot Assistant (upcoming)
-- 🔄 Model retrain-ready structure
+-  **Live sales predictions**
+-  Actual vs Predicted graphs
+-  Calendar View
+-  Eco-smart stock suggestions
+-  Login & signup functionality
+-  Chatbot Assistant (upcoming)
+-  Model retrain-ready structure
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 walmart-sales-predictor/
 ├── backend/
 │ ├── app.py
@@ -70,30 +70,38 @@ walmart-sales-predictor/
 
 ---
 
-## 🧪 How to Run Locally
+##  How to Run Locally
 
 1. Clone the repo
 ```bash
-git clone https://github.com/Foreqast25/Walmart-Sales-Predictor.git
-cd Walmart-Sales-Predictor
-
-2.Create and Activate Virtual Environment
-Windows: 
+- git clone https://github.com/Foreqast25/Walmart-Sales-Predictor.git
+- cd Walmart-Sales-Predictor
+```
+2. Create and Activate Virtual Environment
+  - Windows:
+```bash
 python -m venv venv
 venv\Scripts\activate
+```
 
-Mac/Linux:
+  - Mac/Linux:
+```bash
 python3 -m venv venv
 source venv/bin/activate
+```
+3. Install Required Dependencies
+```bash
+- pip install -r backend/requirements.txt
+```
+4. Run the Flask App
+```bash
+- cd backend
+- python app.py
+```
 
-3.Install Required Dependencies
-pip install -r backend/requirements.txt
-
-4.Run the Flask App
-cd backend
-python app.py
 
 5.Open the App in Your Browser
-http://localhost:5000
+```bash
+- http://localhost:5000
 
 
